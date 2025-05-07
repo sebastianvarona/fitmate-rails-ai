@@ -1,0 +1,52 @@
+<% content_for :title, "Progreso del #{@progress.created_at.strftime "%d/%m/%Y"}" %>
+
+<div class="flex justify-between items-center">
+  <%= render "components/title" %>
+
+  <div class="flex gap-4">
+    <%= link_to "Editar", edit_progress_path(@progress), class: "btn btn-primary" %>
+    <%= link_to "Eliminar", @progress, data: { turbo_method: :delete, turbo_confirm: "Esta acción es permanente. Estás seguro que deseas eliminar este progreso?" },  class: "btn" %>
+  </div>
+</div>
+
+<section>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-sm text-gray-600">Peso</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.weight %> kg</p>
+    </div>
+    <div class="hidden">
+      <label class="block text-sm text-gray-600">Altura</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.height %> cm</p>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Pecho</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.chest %> cm</p>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Brazos</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.arms %> cm</p>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Cintura</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.waist %> cm</p>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Caderas</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.hip %> cm</p>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Muslos</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.thighs %> cm</p>
+    </div>
+    <div>
+      <label class="block text-sm text-gray-600">Pantorrillas</label>
+      <p class="text-lg text-gray-900 font-medium"><%= @progress.calves %> cm</p>
+    </div>
+  </div>
+
+  <div class="mt-8 text-sm text-gray-500">
+    <p>Creado: <%= @progress.created_at.strftime('%d/%m/%Y %H:%M') %></p>
+    <p>Última actualización: <%= @progress.updated_at.strftime('%d/%m/%Y %H:%M') %></p>
+  </div>
+</section>

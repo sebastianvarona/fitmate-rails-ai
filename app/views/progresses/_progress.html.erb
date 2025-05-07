@@ -1,0 +1,58 @@
+<div id="<%= dom_id progress %>" class="w-full sm:w-auto my-5 space-y-5 hidden">
+  <div>
+    <strong class="block font-medium mb-1">Weight:</strong>
+    <%= progress.weight %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Height:</strong>
+    <%= progress.height %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Chest:</strong>
+    <%= progress.chest %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Arms:</strong>
+    <%= progress.arms %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Waist:</strong>
+    <%= progress.waist %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Hip:</strong>
+    <%= progress.hip %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Thighs:</strong>
+    <%= progress.thighs %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Calves:</strong>
+    <%= progress.calves %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= progress.user_id %>
+  </div>
+
+  <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
+    <%= link_to "Show", progress, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    <%= link_to "Edit", edit_progress_path(progress), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    <%= button_to "Destroy", progress, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+</div>
+<li id="<%= dom_id progress %>" class="list-row">
+  <div class="text-4xl font-thin opacity-30 tabular-nums"><%= progress.id %></div>
+  <div class="list-col-grow">
+    <div>Fecha: <%= progress.created_at.strftime "%d/%m/%Y" %></div>
+    <div class="text-xs uppercase font-semibold opacity-60">Peso: <%= progress.weight %> kg</div>
+  </div>
+  <%= link_to progress, class: "btn btn-square btn-ghost" do %>
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+  <% end %>
+
+  <%= button_to progress, method: :delete, class: "btn btn-square btn-ghost", data: { turbo_confirm: "Estas seguro que deseas eliminar este progreso? Esta acción no se puede deshacer." } do %>
+    <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+  <% end %>
+</li>

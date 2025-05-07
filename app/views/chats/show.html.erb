@@ -1,0 +1,23 @@
+<h1 class="mt-8 text-4xl font-semibold"><%= @chat.title %></h1>
+
+  <%= link_to "Eliminar", @chat, data: { turbo_method: :delete, turbo_confirm: "Esta acción es permanente. Estás seguro que deseas eliminar esta rutina?" },  class: "btn fixed right-4 top-4 z-50" %>
+
+<section data-controller="post-question">
+  <ul data-post-question-target="chat" class="w-full mt-8 space-y-3 mb-32">
+    <% @chat.messages.each do |message| %>
+      <li class="chat chat-end">
+        <div class="chat-bubble chat-bubble-success whitespace-pre-wrap"><%= message.prompt %></div>
+      </li>
+      <li class="chat chat-start">
+        <div data-controller="markdown-converter" data-markdown-converter-content-value="<%= message.answer %>" class="chat-bubble prose whitespace-pre-wrap"><%= message.answer %></div>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="fixed bottom-0 right-0 left-64 bg-base-200/50 backdrop-blur z-10 px-4 pt-4 pb-8 border-t border-border">
+    <label class="input w-full">
+      <input type="search" class="grow" placeholder="Haz otra consulta..." data-post-question-target="input" data-action="keyup.enter->post-question#submit" data-url="<%= create_message_chat_path(@chat) %>" />
+      <kbd class="kbd kbd-sm">Enter ⏎</kbd>
+    </label>
+  </div>
+</section>

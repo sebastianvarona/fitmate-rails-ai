@@ -1,0 +1,9 @@
+<% content_for :title, "Mi Progreso" %>
+
+<div class="md:w-2/3 w-full mb-20">
+  <%= render "components/title" %>
+
+  <%= render "form", progress: @progress %>
+
+  <%= link_to "Regresar", progresses_path, class: "btn" %>
+</div>

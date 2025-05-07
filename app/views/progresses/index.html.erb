@@ -1,0 +1,26 @@
+<% content_for :title, "Mi Progreso" %>
+
+<section class="flex items-center justify-between">
+  <%= render "components/title" %>
+
+    <%= link_to "Actualizar progreso", new_progress_path, class: "btn btn-primary" %>
+</section>
+
+<% unless @progresses.empty? %>
+  <section class="h-full max-h-[85vh] flex justify-center">
+    <canvas id="myChart" data-controller="progress-chart" data-progress-chart-dataset-value="<%= @chart.to_json %>"></canvas>
+  </section>
+<% end %>
+
+<div id="progresses" class="min-w-full divide-y divide-gray-200 space-y-5 mb-20">
+  <% if @progresses.any? %>
+    <ul class="list bg-base-100 rounded-box shadow-md">
+      <li class="p-4 pb-2 text-2xl opacity-60 tracking-wide">Historial</li>
+      <% @progresses.each do |progress| %>
+        <%= render progress %>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= render "components/empty_space", content: "No tienes ningun progreso creado." %>
+  <% end %>
+</div>

@@ -1,0 +1,57 @@
+<% content_for :title, "Mis Rutinas" %>
+
+<div class="drawer drawer-end">
+  <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Page content here -->
+    <div class="flex justify-between items-center">
+      <%= render "components/title" %>
+
+      <label for="my-drawer-4" class="drawer-button btn btn-primary">Nueva rutina</label>
+    </div>
+
+    <h3 class="font-semibold text-2xl mb-4"><%= weekday %>:</h3>
+    <ul class="list bg-success/50 rounded-box shadow-md">
+      <% if @today.empty? %> <%= render "components/empty_space", content: "Hoy es dia de descanso!" %><% end %>
+      <% @today.each do |routine| %>
+        <li class="list-row">
+          <div class="text-4xl font-thin opacity-50 tabular-nums"><%= routine.id %></div>
+          <div class="list-col-grow flex items-center text-lg">
+            <div><%= routine.title %> </div>
+          </div>
+          <%= link_to routine, class: "btn btn-square btn-ghost" do %>
+            <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="border-t border-border my-8 opacity-50"></div>
+
+    <h3 class="font-semibold text-2xl mb-4">Otras rutinas</h3>
+    <ul class="list bg-base-100 rounded-box shadow-md">
+      <% if @other.empty? %> <%= render "components/empty_space", content: "No hay rutinas disponibles..." %><% end %>
+      <% @other.each do |routine| %>
+        <li class="list-row">
+          <div class="text-4xl font-thin opacity-30 tabular-nums"><%= routine.id %></div>
+          <div class="list-col-grow flex items-center text-lg">
+            <div><%= routine.title %> </div>
+          </div>
+          <%= link_to routine, class: "btn btn-square btn-ghost" do %>
+            <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div class="bg-base-200 text-base-content min-h-full w-80 p-4 relative">
+      <label for="my-drawer-4" aria-label="close sidebar" class="btn btn-square btn-ghost absolute right-4 top-4">
+        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </label>
+
+      <div class="mt-10"> <%= render "form" %> </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="flex h-screen flex-col w-64 justify-between border-e border-border bg-base-200">
+  <div class="px-4 py-6">
+    <span class="grid h-10 w-32 place-content-center rounded-lg font-semibold text-3xl">
+      FitMate
+    </span>
+
+    <ul class="mt-6 space-y-1">
+      <li>
+        <%= link_to "Conversaciones", chats_path, class: active_link(chats_path) %>
+      </li>
+
+      <li>
+        <%= link_to "Rutinas", routines_path, class: active_link(routines_path) %>
+      </li>
+
+      <li>
+        <%= link_to "Progreso", progresses_path, class: active_link(progresses_path) %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sticky inset-x-0 bottom-0 border-t border-border">
+    <%= button_to destroy_user_session_path, method: :delete, class: "flex items-center gap-2 bg-base-300 p-4 hover:bg-base-200 w-full cursor-pointer" do %>
+      <img
+        alt=""
+        src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        class="size-10 rounded-full object-cover hidden"
+      />
+
+      <div>
+        <p class="text-xs">
+          <strong class="hidden block font-medium">Eric Frusciante</strong>
+
+          <span><%= current_user.email %></span>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

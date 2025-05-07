@@ -1,0 +1,18 @@
+<% content_for :title, "Rutina: #{@routine.title}" %>
+
+<div class="flex justify-between items-center">
+  <%= render "components/title" %>
+  <%= link_to "Eliminar", @routine, data: { turbo_method: :delete, turbo_confirm: "Esta acción es permanente. Estás seguro que deseas eliminar esta rutina?" },  class: "btn" %>
+</div>
+
+<div class="flex gap-4 mb-8">
+  <% Routine::WEEKDAYS.each do |day| %>
+      <% checked = @routine.selected_days.include?(day.to_s) %>
+      <label class="btn <%= checked && "btn-primary" %>">
+        <%= weekday_to_s(day) %>
+        <%= check_box_tag :wday, class: "hidden", checked: checked, data: { controller: "weekday-select", action: "weekday-select#submit", weekday_select_day_value: day, weekday_select_url_value: set_wday_routine_path(@routine) } %>
+      </label>
+  <% end %>
+</div>
+
+<article data-controller="markdown-converter" data-markdown-converter-content-value="<%= @routine.content %>" class="prose whitespace-pre-wrap mb-20"><%= @routine.content %></article>

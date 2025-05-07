@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html data-theme="silk">
+  <head>
+    <title><%= content_for(:title) || "Rails Fitmate" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:300,400,500,600" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  </head>
+
+  <body>
+    <main class="flex">
+      <% if user_signed_in? %> <%= render "components/sidebar" %> <% end %>
+      <div id="scroll_content" class="px-8 flex-1 max-h-screen bg-base-200 overflow-y-auto relative"> <%= yield %> </div>
+    </main>
+
+    <% if alert || notice %>
+      <div class="toast toast-top toast-center z-50">
+        <div class="alert alert-info">
+          <span><%= notice %><%= alert %></span>
+        </div>
+      </div>
+    <% end %>
+  </body>
+</html>

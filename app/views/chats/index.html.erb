@@ -1,0 +1,28 @@
+<% content_for :title, "Mis Conversaciones" %>
+
+<%= render "components/title" %>
+
+<ul class="list bg-base-100 rounded-box shadow-md mb-40">
+  <% if @chats.empty? %> <%= render "components/empty_space", content: "No hay conversaciones iniciadas..." %><% end %>
+  <% @chats.each do |chat| %>
+    <li class="list-row">
+      <div class="text-4xl font-thin opacity-30 tabular-nums"><%= chat.id %></div>
+      <div class="list-col-grow flex items-center text-lg">
+        <div><%= chat.title %> </div>
+      </div>
+      <%= link_to chat, class: "btn btn-square btn-ghost" do %>
+        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right"><path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/><path d="m21 3-9 9"/><path d="M15 3h6v6"/></svg>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<div class="fixed bottom-0 right-0 left-64 bg-base-200/50 backdrop-blur z-10 px-4 pt-4 pb-8 border-t border-border">
+  <%= form_with method: :post, url: chats_path, html: { class: "quote form" } do |f| %>
+    <label class="input w-full">
+      <%= f.search_field :prompt, autofocus: true, class: "grow", placeholder: "Pregunta lo que sea..." %>
+      <kbd class="kbd kbd-sm">Enter ⏎</kbd>
+    </label>
+  <% end %>
+
+</div>
