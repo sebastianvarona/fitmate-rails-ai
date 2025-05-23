@@ -37,12 +37,12 @@ class ChatsController < ApplicationController
         answer: response.result.answer
       }
     else
-      render json: { success: false, error: response.errors.full_messages.join(", ") },
-             status: :unprocessable_entity
+      render json: {success: false, error: response.errors.full_messages.join(", ")},
+        status: :unprocessable_entity
     end
-  rescue StandardError => e
-    render json: { success: false, error: e.message },
-           status: :internal_server_error
+  rescue => e
+    render json: {success: false, error: e.message},
+      status: :internal_server_error
   end
 
   private

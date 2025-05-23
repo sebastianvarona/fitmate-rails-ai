@@ -1,7 +1,34 @@
 require "test_helper"
 
 class RoutineTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @user = users(:one)
+  end
+
+  test "should be valid with required attributes" do
+    routine = Routine.new(title: "Rutina", context: "Ejercicio", content: "Pushups", weekdays: ["monday"], user: @user)
+    assert routine.valid?
+  end
+
+  test "should be invalid without user" do
+    routine = Routine.new(title: "Rutina", context: "Ejercicio", content: "Pushups")
+    assert_not routine.valid?
+    assert_includes routine.errors[:user], "must exist"
+  end
+
+  test "should be invalid without title" do
+    routine = Routine.new(context: "Contexto", user: @user)
+    assert_not routine.valid?
+    assert_includes routine.errors[:title], "can't be blank"
+  end
+
+  test "weekdays should be an array" do
+    routine = Routine.new(title: "Test", context: "Contexto", weekdays: ["monday", "friday"], user: @user)
+    assert_kind_of Array, routine.weekdays
+  end
+
+  test "should respond to user" do
+    routine = routines(:one)
+    assert_respond_to routine, :user
+  end
 end

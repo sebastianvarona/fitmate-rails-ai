@@ -1,11 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  content: MyText
-  weekdays: 
-
+  title: "Mi rutina"
+  context: "Ejercicio"
+  content: "Push-ups"
+  weekdays: []
+  user: one
 two:
-  title: MyString
-  content: MyText
-  weekdays: 
+  title: "Mi rutina 2"
+  context: "Ejercicio"
+  content: "Pull-ups"
+  weekdays: []
+  user: two

@@ -5,7 +5,7 @@ class Routine < ApplicationRecord
   validates :context, presence: true
 
   def selected_days
-    JSON.parse self.weekdays
+    JSON.parse weekdays
   end
 
   WEEKDAYS = %i[sunday monday tuesday wednesday thursday friday saturday]

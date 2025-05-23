@@ -25,7 +25,7 @@ class RoutinesController < ApplicationController
   def destroy
     @routine.destroy!
 
-    redirect_to routines_path
+    redirect_to routines_path, alert: "La rutina ha sido eliminada."
   end
 
   def set_wday
@@ -48,9 +48,8 @@ class RoutinesController < ApplicationController
       title: params[:routine][:title],
       user_id: current_user.id
     )
-    puts response.result
     @routine = response.result
-    redirect_to @routine
+    redirect_to @routine, notice: "Rutina creada exitosamente."
   end
 
   private

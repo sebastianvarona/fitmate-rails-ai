@@ -1,23 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  weight: 1.5
-  height: 1.5
-  chest: 1.5
-  arms: 1.5
-  waist: 1.5
-  hip: 1.5
-  thighs: 1.5
-  calves: 1.5
   user: one
+  weight: 70
+  height: 175
+  chest: 90
+  arms: 30
+  waist: 80
+  hip: 95
+  thighs: 60
+  calves: 35
 
 two:
-  weight: 1.5
-  height: 1.5
-  chest: 1.5
-  arms: 1.5
-  waist: 1.5
-  hip: 1.5
-  thighs: 1.5
-  calves: 1.5
-  user: two
+  user: one
+  weight: 85
+  height: 165
+  chest: 85
+  arms: 20
+  waist: 80
+  hip: 90
+  thighs: 53
+  calves: 30
