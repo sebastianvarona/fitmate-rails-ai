@@ -12,14 +12,6 @@ class Progress < ApplicationRecord
       message: "debe ser un número entre 0 y 500 kg"
     }
 
-  validates :height,
-    presence: {message: "no puede estar vacío"},
-    numericality: {
-      greater_than_or_equal_to: 30,
-      less_than_or_equal_to: 300,
-      message: "debe ser una altura válida entre 30 y 300 cm"
-    }
-
   validates :chest,
     presence: {message: "no puede estar vacío"},
     numericality: {
