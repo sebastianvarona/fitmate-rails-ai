@@ -1,6 +1,6 @@
 class ProgressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_progress, only: %i[ show edit update destroy ]
+  before_action :set_progress, only: %i[show edit update destroy]
 
   def index
     @progresses = current_user.progresses.all
@@ -20,7 +20,7 @@ class ProgressesController < ApplicationController
   end
 
   def create
-    @progress = current_user.progresses.build(progress_params)
+    @progress = current_user.progresses.new(progress_params)
 
     respond_to do |format|
       if @progress.save
@@ -50,11 +50,12 @@ class ProgressesController < ApplicationController
   end
 
   private
-    def set_progress
-      @progress = Progress.find(params[:id])
-    end
 
-    def progress_params
-      params.require(:progress).permit(:weight, :height, :chest, :arms, :waist, :hip, :thighs, :calves, :user_id)
-    end
+  def set_progress
+    @progress = Progress.find(params[:id])
+  end
+
+  def progress_params
+    params.require(:progress).permit(:weight, :height, :chest, :arms, :waist, :hip, :thighs, :calves, :user_id)
+  end
 end

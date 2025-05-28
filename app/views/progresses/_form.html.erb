@@ -1,50 +1,27 @@
 <%= form_with(model: progress, class: "contents") do |form| %>
-  <% if progress.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(progress.errors.count, "error") %> prohibited this progress from being saved:</h2>
+  <% fields = {
+    weight: "Peso (kg)",
+    chest: "Pecho (cm)",
+    arms: "Brazos (cm)",
+    waist: "Cintura (cm)",
+    hip: "Cadera (cm)",
+    thighs: "Muslos (cm)",
+    calves: "Pantorrilla (cm)"
+  } %>
 
-      <ul class="list-disc ml-6">
-        <% progress.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <% fields.each do |field, label| %>
+    <fieldset class="fieldset mb-4">
+      <legend class="fieldset-legend"><%= label %></legend>
+      <%= form.number_field field,
+          placeholder: "0",
+          min: 0,
+          class: ["input w-full", { "input-error": progress.errors[field].any? }] %>
+
+      <% if progress.errors[field].any? %>
+        <p class="text-sm text-red-500 mt-1"><%= progress.errors[field].first %></p>
+      <% end %>
+    </fieldset>
   <% end %>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Peso (kg)</legend>
-    <%= form.number_field :weight, placeholder: "75", min: 0, required: true, class: ["input w-full", {"input-error": progress.errors[:weight].any?}] %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Pecho (cm)</legend>
-    <%= form.number_field :chest, placeholder: "100", min: 0, required: true, class: ["input w-full", { "input-error": progress.errors[:chest].any? }] %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Brazos (cm)</legend>
-    <%= form.number_field :arms, placeholder: "35", min: 0, required: true, class: ["input w-full", { "input-error": progress.errors[:arms].any? }] %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Cintura (cm)</legend>
-    <%= form.number_field :waist, placeholder: "80", min: 0, required: true, class: ["input w-full", { "input-error": progress.errors[:waist].any? }] %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Cadera (cm)</legend>
-    <%= form.number_field :hip, placeholder: "95", min: 0, required: true, class: ["input w-full", { "input-error": progress.errors[:hip].any? }] %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Muslos (cm)</legend>
-    <%= form.number_field :thighs, placeholder: "55", min: 0, required: true, class: ["input w-full", { "input-error": progress.errors[:thighs].any? }] %>
-  </fieldset>
-
-  <fieldset class="fieldset">
-    <legend class="fieldset-legend">Pantorrilla (cm)</legend>
-    <%= form.number_field :calves, placeholder: "35", min: 0, required: true, class: ["input w-full", { "input-error": progress.errors[:calves].any? }] %>
-  </fieldset>
 
   <div class="mt-4 inline-block">
     <%= form.submit "Actualizar progreso", class: "btn btn-primary mr-2" %>
