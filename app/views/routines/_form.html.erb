@@ -1,5 +1,5 @@
 <% @routine ||= Routine.new %>
-<%= form_with model: @routine, html: { class: "max-w-lg" } do |form| %>
+<%= form_with model: @routine, data: { controller: "routines", action: "routines#submit" }, html: { class: "max-w-lg" } do |form| %>
   <fieldset class="fieldset">
     <legend class="fieldset-legend">Nombre de la rutina</legend>
     <%= form.text_field :title, class: "input w-full", placeholder: "Tren superior" %>
