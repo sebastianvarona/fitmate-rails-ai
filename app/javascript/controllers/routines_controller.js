@@ -7,9 +7,6 @@ export default class extends Controller {
     const contextInput = this.element.querySelector("textarea[name='routine[context]']")
     const submitBtn = this.element.querySelector("input[type='submit']")
 
-    // Check title and context are present
-    if (!titleInput.value.trim() || !contextInput.value.trim()) return
-
     // Disable title input
     titleInput.readOnly = true
     titleInput.style.opacity = '0.6'

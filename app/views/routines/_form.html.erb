@@ -1,13 +1,19 @@
-<% @routine ||= Routine.new %>
-<%= form_with model: @routine, data: { controller: "routines", action: "routines#submit" }, html: { class: "max-w-lg" } do |form| %>
+<% routine ||= Routine.new %>
+<%= form_with model: routine, id: "routine_form", data: { controller: "routines" }, html: { class: "max-w-lg" } do |form| %>
   <fieldset class="fieldset">
     <legend class="fieldset-legend">Nombre de la rutina</legend>
-    <%= form.text_field :title, class: "input w-full", placeholder: "Tren superior" %>
+    <%= form.text_field :title, class: ["input w-full", "input-error": routine.errors[:title].any?], value: routine.title, placeholder: "Tren superior" %>
+    <% if routine.errors[:title].any? %>
+      <p class="label text-error"><%= routine.errors[:title].first %></p>
+    <% end %>
   </fieldset>
 
   <fieldset class="fieldset">
     <legend class="fieldset-legend">Contexto</legend>
-    <%= form.text_area :context, class: "textarea min-h-32 w-full", placeholder: "Quiero entrenar todo el tren superior con mi propio peso corporal." %>
+    <%= form.text_area :context, class: ["textarea min-h-32 w-full", "textarea-error": routine.errors[:title].any?], placeholder: "Quiero entrenar todo el tren superior con mi propio peso corporal." %>
+    <% if routine.errors[:context].any? %>
+      <p class="label text-error"><%= routine.errors[:context].first %></p>
+    <% end %>
   </fieldset>
 
   <%= form.submit "Crear rutina", class: "btn btn-primary btn-block mt-4" %>

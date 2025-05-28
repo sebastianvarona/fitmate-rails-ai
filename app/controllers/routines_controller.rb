@@ -28,8 +28,19 @@ class RoutinesController < ApplicationController
       title: params[:routine][:title],
       user_id: current_user.id
     )
+
     @routine = response.result
-    redirect_to @routine, notice: "Rutina creada exitosamente."
+    unless @routine.present?
+      @routine = current_user.routines.new(routine_params)
+    end
+
+    respond_to do |format|
+      if @routine.valid?
+        format.html { redirect_to @routine, notice: "Rutina creada exitosamente." }
+      else
+        format.turbo_stream
+      end
+    end
   end
 
   def destroy
@@ -56,6 +67,10 @@ class RoutinesController < ApplicationController
 
   def set_routine
     @routine = Routine.find(params[:id])
+  end
+
+  def routine_params
+    params.expect(routine: %i[title context])
   end
 
   def symbol_weekday
