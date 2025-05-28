@@ -2,7 +2,7 @@
 
 <%= render "components/title" %>
 
-<ul class="list bg-base-100 rounded-box shadow-md mb-40">
+<ul id="chats-list" class="list bg-base-100 rounded-box shadow-md mb-40">
   <% if @chats.empty? %> <%= render "components/empty_space", content: "No hay conversaciones iniciadas..." %><% end %>
   <% @chats.each do |chat| %>
     <li class="list-row">
@@ -18,7 +18,7 @@
 </ul>
 
 <div class="fixed bottom-0 right-0 left-64 bg-base-200/50 backdrop-blur z-10 px-4 pt-4 pb-8 border-t border-border">
-  <%= form_with method: :post, url: chats_path, html: { class: "quote form" } do |f| %>
+  <%= form_with method: :post, url: chats_path, data: { controller: "chats", action: "chats#submit" }, html: { class: "quote form" } do |f| %>
     <label class="input w-full">
       <%= f.search_field :prompt, autofocus: true, class: "grow", placeholder: "Pregunta lo que sea..." %>
       <kbd class="kbd kbd-sm">Enter ⏎</kbd>

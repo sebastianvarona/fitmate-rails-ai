@@ -22,6 +22,16 @@ class RoutinesController < ApplicationController
     @routine = Routine.new
   end
 
+  def create
+    response = CreateAiRoutineService.call(
+      context: params[:routine][:context],
+      title: params[:routine][:title],
+      user_id: current_user.id
+    )
+    @routine = response.result
+    redirect_to @routine, notice: "Rutina creada exitosamente."
+  end
+
   def destroy
     @routine.destroy!
 
@@ -40,16 +50,6 @@ class RoutinesController < ApplicationController
     @routine.update(weekdays: routine_weekdays.to_json)
 
     redirect_to @routine
-  end
-
-  def create
-    response = CreateAiRoutineService.call(
-      context: params[:routine][:context],
-      title: params[:routine][:title],
-      user_id: current_user.id
-    )
-    @routine = response.result
-    redirect_to @routine, notice: "Rutina creada exitosamente."
   end
 
   private
