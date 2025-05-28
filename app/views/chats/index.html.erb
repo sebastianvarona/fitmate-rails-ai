@@ -2,6 +2,8 @@
 
 <%= render "components/title" %>
 
+<%# input-error %>
+
 <ul id="chats-list" class="list bg-base-100 rounded-box shadow-md mb-40">
   <% if @chats.empty? %> <%= render "components/empty_space", content: "No hay conversaciones iniciadas..." %><% end %>
   <% @chats.each do |chat| %>

@@ -9,11 +9,16 @@ class RoutinesControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
 
     # Crear algunas rutinas de prueba
-    @routine = routines(:one)
+    @routine = @user.routines.create!(
+      title: "Entrenamiento matutino",
+      context: "Ejercicios básicos de cardio y fuerza",
+      weekdays: JSON.generate(["monday"])
+    )
+
     @invalid_routine = {
       title: "",
       context: "Corto",
-      weekdays: [].to_json
+      weekdays: JSON.generate([])
     }
   end
 
@@ -32,6 +37,7 @@ class RoutinesControllerTest < ActionDispatch::IntegrationTest
   test "index muestra las rutinas del usuario" do
     get routines_path
 
+    assert_response :success
     assert_template :index
   end
 

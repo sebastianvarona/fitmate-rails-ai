@@ -4,11 +4,11 @@ one:
   title: "Mi rutina"
   context: "Ejercicio de 10"
   content: "Push-ups"
-  weekdays: []
+  weekdays: "[]"
   user: one
 two:
   title: "Mi rutina 2"
   context: "Ejercicio de 10"
   content: "Pull-ups"
-  weekdays: []
+  weekdays: "[]"
   user: two

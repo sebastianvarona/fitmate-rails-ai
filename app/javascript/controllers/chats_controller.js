@@ -2,9 +2,16 @@ import { Controller } from '@hotwired/stimulus'
 
 // Connects to data-controller="chats"
 export default class extends Controller {
-  submit () {
+  submit (e) {
     const search = this.element.querySelector("input[type='search']")
     const title = search.value
+
+    // Check if chat is empty
+    if (!title.trim()) {
+      e.preventDefault()
+      search.parentElement.classList.add('input-error')
+      return
+    }
 
     const chatList = document.querySelector('#chats-list')
 
