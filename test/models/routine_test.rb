@@ -6,7 +6,7 @@ class RoutineTest < ActiveSupport::TestCase
   end
 
   test "should be valid with required attributes" do
-    routine = Routine.new(title: "Rutina", context: "Ejercicio", content: "Pushups", weekdays: ["monday"], user: @user)
+    routine = Routine.new(title: "Rutina", context: "Ejercicio con más de 10 caracteres", content: "Pushups", weekdays: ["monday"], user: @user)
     assert routine.valid?
   end
 
@@ -19,7 +19,7 @@ class RoutineTest < ActiveSupport::TestCase
   test "should be invalid without title" do
     routine = Routine.new(context: "Contexto", user: @user)
     assert_not routine.valid?
-    assert_includes routine.errors[:title], "can't be blank"
+    assert_includes routine.errors[:title], "no puede estar vacío"
   end
 
   test "weekdays should be an array" do

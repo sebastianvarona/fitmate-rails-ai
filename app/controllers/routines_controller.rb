@@ -2,6 +2,8 @@ class RoutinesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_routine, only: %i[show set_wday destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+
   def index
     @routine = Routine.new
     @routines = Routine.all.where(user: current_user).order(id: :desc)
@@ -9,8 +11,12 @@ class RoutinesController < ApplicationController
     @today = []
     @other = []
 
+    # Convertir el día actual a string para consistencia
+    current_day = symbol_weekday.to_s
+
     @routines.each do |routine|
-      if routine.selected_days.include?(symbol_weekday.to_s)
+      # Usar strings en ambos lados de la comparación
+      if routine.selected_days.include?(current_day)
         @today.push(routine)
       else
         @other.push(routine)
@@ -38,6 +44,7 @@ class RoutinesController < ApplicationController
       if @routine.valid?
         format.html { redirect_to @routine, notice: "Rutina creada exitosamente." }
       else
+        format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream
       end
     end
@@ -50,7 +57,7 @@ class RoutinesController < ApplicationController
   end
 
   def set_wday
-    routine_weekdays = JSON.parse(@routine.weekdays)
+    routine_weekdays = JSON.parse(@routine.weekdays || "[]")
 
     if params[:checked] == 1
       routine_weekdays.push(params[:day]) unless routine_weekdays.include?(params[:day])

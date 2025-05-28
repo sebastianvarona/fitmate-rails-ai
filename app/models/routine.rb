@@ -20,7 +20,7 @@ class Routine < ApplicationRecord
     }
 
   def selected_days
-    JSON.parse(weekdays)
+    JSON.parse(weekdays || "[]").map(&:to_s)
   end
 
   WEEKDAYS = %i[sunday monday tuesday wednesday thursday friday saturday]

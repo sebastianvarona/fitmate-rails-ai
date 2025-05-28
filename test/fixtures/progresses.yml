@@ -2,22 +2,26 @@
 
 one:
   user: one
-  weight: 70
-  height: 175
-  chest: 90
-  arms: 30
-  waist: 80
-  hip: 95
-  thighs: 60
-  calves: 35
+  weight: 75.5
+  height: 180.0
+  chest: 100.0
+  arms: 35.0
+  waist: 80.0
+  hip: 95.0
+  thighs: 55.0
+  calves: 38.0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
 
 two:
-  user: one
-  weight: 85
-  height: 165
-  chest: 85
-  arms: 20
-  waist: 80
-  hip: 90
-  thighs: 53
-  calves: 30
+  user: two
+  weight: 65.0
+  height: 165.0
+  chest: 90.0
+  arms: 30.0
+  waist: 70.0
+  hip: 90.0
+  thighs: 50.0
+  calves: 36.0
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>

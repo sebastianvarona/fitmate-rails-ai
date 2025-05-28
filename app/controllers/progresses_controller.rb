@@ -2,6 +2,8 @@ class ProgressesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_progress, only: %i[show edit update destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+
   def index
     @progresses = current_user.progresses.all
     @chart = []
@@ -52,7 +54,7 @@ class ProgressesController < ApplicationController
   private
 
   def set_progress
-    @progress = Progress.find(params[:id])
+    @progress = current_user.progresses.find(params[:id])
   end
 
   def progress_params

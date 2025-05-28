@@ -21,9 +21,9 @@ class ProgressTest < ActiveSupport::TestCase
     assert_not progress.valid?
   end
 
-  test "should accept decimal values" do
+  test "should not accept decimal values" do
     progress = Progress.new(user: @user, weight: 75.5, height: 180.2)
-    assert progress.valid?
+    assert_not progress.valid?
   end
 
   test "should belong to user" do
